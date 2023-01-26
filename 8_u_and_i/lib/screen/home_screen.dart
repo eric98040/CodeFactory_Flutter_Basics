@@ -10,15 +10,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   DateTime selectedDate = DateTime(
-    DateTime
-        .now()
-        .year,
-    DateTime
-        .now()
-        .month,
-    DateTime
-        .now()
-        .day,
+    DateTime.now().year,
+    DateTime.now().month,
+    DateTime.now().day,
   );
 
   @override
@@ -28,10 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         bottom: false,
         child: Container(
-          width: MediaQuery
-              .of(context)
-              .size
-              .width,
+          width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
               _TopPart(
@@ -42,9 +33,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-      ),);
+      ),
+    );
   }
-  void onHeartPressed(){
+
+  void onHeartPressed() {
     final DateTime now = DateTime.now();
     //dialog
     showCupertinoDialog(
@@ -104,6 +97,8 @@ class _TopPart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
     final now = DateTime.now();
     return Expanded(
       child: Column(
@@ -111,30 +106,17 @@ class _TopPart extends StatelessWidget {
         children: [
           Text(
             'U&I',
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'parisienne',
-              fontSize: 80,
-            ),
+            style: textTheme.headline1,
           ),
           Column(
             children: [
               Text(
                 '우리 처음 만난 날',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'sunflower',
-                  fontSize: 30,
-                ),
+                style: textTheme.bodyText1,
               ),
               Text(
-                '${selectedDate.year}.${selectedDate.month}.${selectedDate
-                    .day}',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'sunflower',
-                  fontSize: 20,
-                ),
+                '${selectedDate.year}.${selectedDate.month}.${selectedDate.day}',
+                style: textTheme.bodyText2,
               ),
             ],
           ),
@@ -148,18 +130,11 @@ class _TopPart extends StatelessWidget {
           ),
           Text(
             'D+${DateTime(
-              now.year,
-              now.month,
-              now.day,
-            )
-                .difference(selectedDate)
-                .inDays + 1}',
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'sunflower',
-              fontSize: 50,
-              fontWeight: FontWeight.w700,
-            ),
+                  now.year,
+                  now.month,
+                  now.day,
+                ).difference(selectedDate).inDays + 1}',
+            style: textTheme.headline2,
           ),
         ],
       ),
